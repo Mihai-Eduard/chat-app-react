@@ -1,7 +1,6 @@
 # Kahoot
 
-## 
+### Architecture and Used Tools
 
 ### Developed by:
-- Sorin Enachioiu
-- Eduard Mihai
+
