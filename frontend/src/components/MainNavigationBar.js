@@ -5,7 +5,10 @@ import logo from "../resources/logo192.png";
 const MainNavigationBar = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav
+        className="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark"
+        data-bs-theme="dark"
+      >
         <div className="container-fluid">
           <div className="navbar-brand">
             <img
@@ -36,7 +39,7 @@ const MainNavigationBar = () => {
               </li>
             </ul>
             <Link to="/login">
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-light" type="submit">
                 Login
               </button>
             </Link>
