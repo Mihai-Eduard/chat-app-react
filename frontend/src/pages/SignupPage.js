@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import SignupForm from "../components/SignupForm";
 
 const SignupPage = (props) => {
   return (
-    <div>
-      <p>Signup</p>
-      <Link to="/">Cancel</Link>
-    </div>
+      <main>
+          <SignupForm />
+      </main>
   );
 };
 

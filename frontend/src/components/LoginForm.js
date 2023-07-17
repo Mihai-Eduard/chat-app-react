@@ -10,7 +10,7 @@ const LoginForm = () => {
           Email
         </label>
         <div className="col-sm-10">
-          <input type="email" className="form-control" id="email" />
+          <input type="email" className="form-control" id="email" placeholder="example@gmail.com"/>
         </div>
       </div>
       <div className="row mb-3">
