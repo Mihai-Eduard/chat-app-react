@@ -10,7 +10,12 @@ const LoginForm = () => {
           Email
         </label>
         <div className="col-sm-10">
-          <input type="email" className="form-control" id="email" placeholder="example@gmail.com"/>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            placeholder="example@gmail.com"
+          />
         </div>
       </div>
       <div className="row mb-3">
@@ -32,11 +37,11 @@ const LoginForm = () => {
         </div>
       </div>
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-outline-primary">
           Sign in
         </button>
         <Link to="/signup">
-          <button type="submit" className="btn">
+          <button type="submit" className="btn btn-outline-light">
             Create account
           </button>
         </Link>
