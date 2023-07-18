@@ -56,13 +56,20 @@ const SignupForm = () => {
           />
         </div>
       </div>
-      <Link to="/login?signup=success">
-        <div className="text-end">
-          <button type="submit" className="btn btn-outline-primary">
-            Sign up
+      <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+        <button type="submit" className="btn btn-outline-primary">
+          Sign up
+        </button>
+        <Link to="/login">
+          <button
+            type="submit"
+            className="btn btn-outline-light"
+            style={{ marginRight: "1rem" }}
+          >
+            Sign in instead
           </button>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </form>
   );
 

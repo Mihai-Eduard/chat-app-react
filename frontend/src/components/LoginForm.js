@@ -41,8 +41,12 @@ const LoginForm = () => {
           Sign in
         </button>
         <Link to="/signup">
-          <button type="submit" className="btn btn-outline-light">
-            Create account
+          <button
+            type="submit"
+            className="btn btn-outline-light"
+            style={{ marginRight: "1rem" }}
+          >
+            Create account instead
           </button>
         </Link>
       </div>
