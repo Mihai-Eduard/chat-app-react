@@ -30,13 +30,13 @@ const MainNavigationBar = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1" style={{ marginLeft: "1rem" }}>
+              <Nav.Link href="#description" style={{ marginLeft: "1rem" }}>
                 Description
               </Nav.Link>
-              <Nav.Link href="#action2" style={{ marginLeft: "1rem" }}>
+              <Nav.Link href="#features" style={{ marginLeft: "1rem" }}>
                 Features
               </Nav.Link>
-              <Nav.Link href="#action3" style={{ marginLeft: "1rem" }}>
+              <Nav.Link href="#about" style={{ marginLeft: "1rem" }}>
                 About Us
               </Nav.Link>
             </Nav>
