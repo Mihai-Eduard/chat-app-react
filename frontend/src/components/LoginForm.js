@@ -54,7 +54,10 @@ const LoginForm = () => {
   );
 
   return (
-    <Modal title={{ message: "Welcome back!", closePath: "/" }} body={form} />
+    <Modal
+      title={{ message: "Welcome back!", closePath: "/home" }}
+      body={form}
+    />
   );
 };
 

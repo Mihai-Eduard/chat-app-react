@@ -74,7 +74,10 @@ const SignupForm = () => {
   );
 
   return (
-    <Modal title={{ message: "Create Account", closePath: "/" }} body={form} />
+    <Modal
+      title={{ message: "Create Account", closePath: "/home" }}
+      body={form}
+    />
   );
 };
 

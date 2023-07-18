@@ -6,10 +6,15 @@ import SignupPage from "./pages/SignupPage";
 import UserMainPage from "./pages/UserMainPage";
 
 const route = createBrowserRouter([
-  { path: "/", element: <RootLayout />, children: [] },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/signup", element: <SignupPage /> },
-  { path: "/user", element: <UserMainPage /> },
+  {
+    path: "/",
+    children: [
+      { path: "home", element: <RootLayout />, children: [] },
+      { path: "login", element: <LoginPage /> },
+      { path: "signup", element: <SignupPage /> },
+      { path: "user", element: <UserMainPage /> },
+    ],
+  },
 ]);
 
 function App() {
