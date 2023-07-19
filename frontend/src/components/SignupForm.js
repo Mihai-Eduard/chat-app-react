@@ -60,7 +60,7 @@ const SignupForm = () => {
         <button type="submit" className="btn btn-outline-primary">
           Sign up
         </button>
-        <Link to="/login">
+        <Link to="/home/login">
           <button
             type="submit"
             className="btn btn-outline-light"

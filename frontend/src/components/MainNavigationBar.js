@@ -41,7 +41,7 @@ const MainNavigationBar = () => {
               </Nav.Link>
             </Nav>
             <Form className="d-flex">
-              <Link to="/login">
+              <Link to="/home/login">
                 <Button variant="outline-success">Login</Button>
               </Link>
             </Form>

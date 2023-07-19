@@ -15,21 +15,18 @@ function validateJSONToken(token) {
   return verify(token, KEY);
 }
 
-const notAuthorizedError = {
-  title: "Not Authorized!",
-  message: "Protected Resources!",
-};
-
 function checkAuthMiddleware(req, res, next) {
+  if (req.method === "OPTIONS") return next();
+
   if (!req.headers.authorization) {
     console.log("token missing");
-    return res.status(401).json({ error: notAuthorizedError });
+    return next({ status: 401, message: "Not Authorized!" });
   }
 
   const authData = req.headers.authorization.split(" ");
   if (authData.length !== 2) {
     console.log("bearer missing");
-    return res.status(401).json({ error: notAuthorizedError });
+    return next({ status: 401, message: "Not Authorized!" });
   }
 
   const authToken = authData[1];
@@ -37,11 +34,11 @@ function checkAuthMiddleware(req, res, next) {
     const userID = validateJSONToken(authToken);
     req.token = userID["id"];
     console.log(req.token);
+    next();
   } catch (error) {
     console.log(error.message);
-    return res.status(401).json({ error: notAuthorizedError });
+    return next({ status: 401, message: "Not Authorized!" });
   }
-  next();
 }
 
 exports.isValidPassword = isValidPassword;
