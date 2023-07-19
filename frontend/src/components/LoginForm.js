@@ -16,7 +16,7 @@ const LoginForm = () => {
     event.preventDefault();
     fetcher.submit(
       { email: emailRef.current.value, password: passwordRef.current.value },
-      { method: "post", action: "/login" },
+      { method: "post", action: "/home/login" },
     );
   };
 
@@ -77,7 +77,7 @@ const LoginForm = () => {
         >
           {!isSubmitting ? "Sign in" : "Signing in..."}
         </button>
-        <Link to="/signup">
+        <Link to="/home/signup">
           <button
             type="submit"
             className="btn btn-outline-light"

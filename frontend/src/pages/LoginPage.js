@@ -1,6 +1,7 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 import { json, redirect } from "react-router-dom";
+import { saveToken } from "../utils/token";
 
 const LoginPage = () => {
   return (
@@ -35,8 +36,8 @@ export async function loginFormAction({ request }) {
 
     if (response.status === 422) return data;
 
-    console.log(data);
-    return redirect("/user");
+    saveToken(data.token);
+    return redirect("/");
   } catch (error) {
     console.log(error);
     throw json(

@@ -9,12 +9,18 @@ import ErrorPage from "./pages/ErrorPage";
 const route = createBrowserRouter([
   {
     path: "/",
+    id: "root",
     errorElement: <ErrorPage />,
     children: [
-      { path: "home", element: <RootLayout />, children: [] },
-      { path: "login", element: <LoginPage />, action: loginFormAction },
-      { path: "signup", element: <SignupPage /> },
-      { path: "user", element: <UserMainPage /> },
+      { index: true, element: <UserMainPage /> },
+      {
+        path: "home",
+        children: [
+          { index: true, element: <RootLayout /> },
+          { path: "login", element: <LoginPage />, action: loginFormAction },
+          { path: "signup", element: <SignupPage /> },
+        ],
+      },
     ],
   },
 ]);

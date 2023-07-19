@@ -4,7 +4,7 @@ import Features from "../components/MainPage/Features";
 import Description from "../components/MainPage/Description";
 import About from "../components/MainPage/About";
 
-const RootLayout = (props) => {
+const RootLayout = () => {
   return (
     <Fragment>
       <MainNavigationBar />
