@@ -29,7 +29,11 @@ const Description = () => {
   };
 
   return (
-    <Carousel id="description" fade>
+    <Carousel
+      id="description"
+      fade
+      style={{ width: "50%", marginTop: "3rem", marginBottom: "3rem" }}
+    >
       <Carousel.Item>
         <CarouselImage src={photo1} alt="First slide" />
         <Carousel.Caption>
