@@ -3,10 +3,13 @@ import { json, useNavigate } from "react-router-dom";
 import LoadingLayout from "../components/LoadingLayout";
 import { getToken } from "../utils/token";
 import UserMainComponent from "../components/UserMainComponent";
+import { useDispatch } from "react-redux";
+import { currentActions } from "../store/current-slice";
 
 const UserMainPage = () => {
   const [element, setElement] = useState(<LoadingLayout />);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchAndVerify().then(([authorized, conversations]) => {
@@ -14,15 +17,16 @@ const UserMainPage = () => {
       else {
         console.log(conversations);
         console.log(authorized["username"]);
-        setElement(
-          <UserMainComponent
-            username={authorized["username"]}
-            conversations={conversations}
-          />,
+        dispatch(
+          currentActions.setUsername({ username: authorized["username"] }),
         );
+        dispatch(
+          currentActions.setConversations({ conversations: conversations }),
+        );
+        setElement(<UserMainComponent />);
       }
     });
-  }, [navigate, setElement]);
+  }, [navigate, setElement, dispatch]);
 
   return <>{element}</>;
 };

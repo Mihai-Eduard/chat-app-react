@@ -1,8 +1,11 @@
 import React from "react";
 import profileDefault from "../../resources/UserPage/my-profile-picture.png";
 import classes from "./ProfileSection.module.css";
+import { useSelector } from "react-redux";
 
-const ProfileSection = (props) => {
+const ProfileSection = () => {
+  const username = useSelector((state) => state.current.username);
+
   const settingsIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +28,7 @@ const ProfileSection = (props) => {
         <img src={profileDefault} alt="profile" />
       </div>
       <div className={classes.detailsContainer}>
-        <h5>{props.username || "Username"}</h5>
+        <h5>{username || "Username"}</h5>
       </div>
       <div className={classes.settingsContainer}>{settingsIcon}</div>
     </div>

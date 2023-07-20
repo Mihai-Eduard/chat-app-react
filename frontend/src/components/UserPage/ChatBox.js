@@ -1,8 +1,11 @@
 import React from "react";
 import classes from "./ChatBox.module.css";
 import profileDefault from "../../resources/UserPage/profile-default.png";
+import { useDispatch } from "react-redux";
+import { currentActions } from "../../store/current-slice";
 
 const ChatBox = ({ username, messages }) => {
+  const dispatch = useDispatch();
   let text = null;
   let date = null;
 
@@ -15,7 +18,9 @@ const ChatBox = ({ username, messages }) => {
   }
 
   const showMessagesHandler = () => {
-    console.log(messages);
+    dispatch(
+      currentActions.setShownConversation({ shownConversation: messages }),
+    );
   };
 
   return (
