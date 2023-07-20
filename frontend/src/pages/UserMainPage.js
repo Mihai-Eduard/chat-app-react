@@ -9,10 +9,18 @@ const UserMainPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchAndVerify().then((authorized) => {
-      console.log(authorized);
-      if (authorized === "TRUE") setElement(<UserMainComponent />);
-      else return navigate("/home");
+    fetchAndVerify().then(([authorized, conversations]) => {
+      if (authorized === "FALSE") return navigate("/home");
+      else {
+        console.log(conversations);
+        console.log(authorized["username"]);
+        setElement(
+          <UserMainComponent
+            username={authorized["username"]}
+            conversations={conversations}
+          />,
+        );
+      }
     });
   }, [navigate, setElement]);
 
@@ -26,19 +34,41 @@ const fetchAndVerify = async () => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
 
+  console.log("verifying...");
   await sleep(1500);
 
   try {
-    const response = await fetch("http://localhost:8080/user/verify", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
+    const verifyUserResponse = await fetch(
+      "http://localhost:8080/user/verify",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
       },
-    });
+    );
 
-    return response.status !== 401 ? "TRUE" : "FALSE";
+    if (verifyUserResponse.status === 401) return ["FALSE", null];
+
+    const getConversationsResponse = await fetch(
+      "http://localhost:8080/user/conversations",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      },
+    );
+
+    if (getConversationsResponse.status === 401) return ["FALSE", null];
+
+    const username = (await verifyUserResponse.json())["username"];
+    const conversations = (await getConversationsResponse.json())[
+      "conversations"
+    ];
+    return [{ username: username }, conversations];
   } catch (error) {
-    console.log("*" + error);
+    console.log(error);
     throw json(
       { message: "Could not authenticate the user!" },
       { status: 500 },
