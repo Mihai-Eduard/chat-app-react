@@ -4,7 +4,8 @@ import profileDefault from "../../resources/UserPage/profile-default.png";
 import { useDispatch } from "react-redux";
 import { currentActions } from "../../store/current-slice";
 
-const ChatBox = ({ username, messages }) => {
+const ChatBox = ({ username, conversation, conversationKey }) => {
+  const messages = conversation["messages"];
   const dispatch = useDispatch();
   let text = null;
   let date = null;
@@ -19,7 +20,9 @@ const ChatBox = ({ username, messages }) => {
 
   const showMessagesHandler = () => {
     dispatch(
-      currentActions.setShownConversation({ shownConversation: messages }),
+      currentActions.setShownConversation({
+        shownConversation: conversationKey,
+      }),
     );
   };
 

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import ChatBox from "./ChatBox";
 import { useSelector } from "react-redux";
 
@@ -11,7 +10,8 @@ const FriendsSections = () => {
         <ChatBox
           key={key}
           username={conversations[key].friend}
-          messages={conversations[key].messages}
+          conversation={conversations[key]}
+          conversationKey={key}
         />
       ))}
     </div>

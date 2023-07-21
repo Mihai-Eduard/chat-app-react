@@ -26,12 +26,53 @@ const UserMainPage = () => {
         setElement(<UserMainComponent />);
       }
     });
+    const interval = setInterval(() => {
+      console.log("fetching");
+      fetchTheConversations()
+        .then((conversations) => {
+          if (conversations === "FALSE") return navigate("/home");
+          dispatch(
+            currentActions.setConversations({
+              conversations: conversations,
+            }),
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+          throw json(
+            { message: "Could not authenticate the user!" },
+            { status: 500 },
+          );
+        });
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, [navigate, setElement, dispatch]);
 
   return <>{element}</>;
 };
 
 export default UserMainPage;
+
+const fetchTheConversations = async () => {
+  try {
+    const response = await fetch("http://localhost:8080/user/conversations", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    if (response.status === 401) return "FALSE";
+    return (await response.json())["conversations"];
+  } catch (error) {
+    console.log(error);
+    throw json(
+      { message: "Could not authenticate the user!" },
+      { status: 500 },
+    );
+  }
+};
 
 const fetchAndVerify = async () => {
   const sleep = (milliseconds) => {
@@ -54,22 +95,11 @@ const fetchAndVerify = async () => {
 
     if (verifyUserResponse.status === 401) return ["FALSE", null];
 
-    const getConversationsResponse = await fetch(
-      "http://localhost:8080/user/conversations",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      },
-    );
-
-    if (getConversationsResponse.status === 401) return ["FALSE", null];
+    const conversations = await fetchTheConversations();
+    if (conversations === "FALSE") return ["FALSE", null];
 
     const username = (await verifyUserResponse.json())["username"];
-    const conversations = (await getConversationsResponse.json())[
-      "conversations"
-    ];
+
     return [{ username: username }, conversations];
   } catch (error) {
     console.log(error);

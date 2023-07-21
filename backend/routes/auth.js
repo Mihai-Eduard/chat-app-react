@@ -10,6 +10,7 @@ const invalidAuthenticationError = {
 };
 
 router.post("/login", async (req, res) => {
+  console.log("logging the users...");
   const email = req.body.email;
   const password = req.body.password;
 

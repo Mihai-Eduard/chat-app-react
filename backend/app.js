@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const messagesRoutes = require("./routes/messages");
 const { errorHandler } = require("./routes/error");
 
 const app = express();
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 app.use(authRoutes);
 app.use("/user", userRoutes);
+app.use("/messages", messagesRoutes);
 
 app.use(errorHandler);
 

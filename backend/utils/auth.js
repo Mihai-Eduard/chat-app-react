@@ -33,7 +33,6 @@ function checkAuthMiddleware(req, res, next) {
   try {
     const data = validateJSONToken(authToken);
     req["username"] = data["username"];
-    console.log(req["username"]);
     next();
   } catch (error) {
     console.log(error.message);
