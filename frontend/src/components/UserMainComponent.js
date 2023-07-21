@@ -1,22 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { removeToken } from "../utils/token";
+import ConnectionsSections from "./UserPage/ConnectionsSections";
+import MessageSection from "./UserPage/MessageSection";
 
 const UserMainComponent = () => {
-  const navigate = useNavigate();
-
   return (
-    <div>
-      <p>Sorinel Piticu</p>
-      <button
-        onClick={() => {
-          removeToken();
-          navigate("/home");
-        }}
-      >
-        Logout
-      </button>
-    </div>
+    <main style={{ display: "flex", height: "100vh" }}>
+      <ConnectionsSections />
+      <MessageSection />
+    </main>
   );
 };
 

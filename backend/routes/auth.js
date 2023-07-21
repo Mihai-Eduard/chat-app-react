@@ -10,6 +10,7 @@ const invalidAuthenticationError = {
 };
 
 router.post("/login", async (req, res) => {
+  console.log("logging the users...");
   const email = req.body.email;
   const password = req.body.password;
 
@@ -17,7 +18,7 @@ router.post("/login", async (req, res) => {
     return res.status(422).json({ error: invalidAuthenticationError });
 
   try {
-    const user = await getUser(email);
+    const { user } = await getUser({ email: email });
     if (!user)
       return res.status(422).json({ error: invalidAuthenticationError });
 
@@ -25,8 +26,8 @@ router.post("/login", async (req, res) => {
     if (!checkPassword)
       return res.status(422).json({ error: invalidAuthenticationError });
 
-    const token = createJSONToken(user.id);
-    return res.status(200).json({ token: token });
+    const token = createJSONToken(user.username);
+    return res.status(200).json({ token: token, userID: user.id });
   } catch (error) {
     console.log(error.message);
     return res.status(422).json({ error: invalidAuthenticationError });
