@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { getToken } from "../../utils/token";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {getToken} from "../../utils/token";
 
 const defaultMessage = (
   <div
@@ -54,6 +54,17 @@ const MessageSection = () => {
       });
   };
 
+  const fromMiliToTime = (timeInMillies) => {
+      const dateObject = new Date(timeInMillies);
+
+      const hours = dateObject.getHours();
+      const minutes = dateObject.getMinutes();
+
+      const formattedHours = hours.toString().padStart(2, '0');
+      const formattedMinutes = minutes.toString().padStart(2, '0');
+
+      return `${formattedHours}:${formattedMinutes}`;
+  }
   return (
     <div
       style={{
@@ -67,7 +78,7 @@ const MessageSection = () => {
         {Object.keys(messages).map((key) => {
           return (
             <div key={key}>
-              {messages[key].sender}({messages[key].date}) :{" "}
+              {messages[key].sender}({fromMiliToTime(messages[key].date)}) :{" "}
               {messages[key].text}
             </div>
           );

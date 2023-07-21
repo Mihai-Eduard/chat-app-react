@@ -18,33 +18,17 @@ const HomePage = () => {
         <div
           style={{
             alignSelf: "center",
-            background: "pink",
+            background: "#09000f",
             display: "flex",
             justifyContent: "space-around",
+              width:"100%",
           }}
         >
           <Description />
         </div>
-        <div
-          style={{
-            alignSelf: "center",
-            background: "pink",
-            display: "flex",
-            justifyContent: "space-around",
-          }}
-        >
-          <Description />
-        </div>
-        <div
-          style={{
-            alignSelf: "center",
-            background: "pink",
-            display: "flex",
-            justifyContent: "space-around",
-          }}
-        >
-          <Description />
-        </div>
+          <div style={{width:"100%"}}>
+              <Features/>
+          </div>
       </main>
     </Fragment>
   );
