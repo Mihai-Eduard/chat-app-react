@@ -32,8 +32,6 @@ function checkAuthMiddleware(req, res, next) {
   const authToken = authData[1];
   try {
     const data = validateJSONToken(authToken);
-    console.log("*");
-    console.log(data);
     req["id"] = data["id"];
     next();
   } catch (error) {

@@ -32,18 +32,7 @@
     opacity: 0.5;
 }
 
-/*.messageBubble::before {*/
-/*    content: "";*/
-/*    position: absolute;*/
-/*    top: 50%;*/
-/*    left: -10px;*/
-/*    width: 0;*/
-/*    height: 0;*/
-/*    border: 10px solid transparent;*/
-/*    border-right-color: #DCF8C6;*/
-/*    transform: translateY(-50%);*/
-/*}*/
-
 .messageBubble p{
     margin-bottom: 0;
+    word-wrap: break-word;
 }

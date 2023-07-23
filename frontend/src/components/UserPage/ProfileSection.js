@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import profileDefault from "../../resources/UserPage/profile-picture-default.png";
 import classes from "./ProfileSection.module.css";
 import { useSelector } from "react-redux";
 
 const ProfileSection = () => {
   const user = useSelector((state) => state.current.user);
+  const [overlay, setOverlay] = useState(false);
 
   const settingsIcon = (
     <svg
