@@ -8,14 +8,14 @@ router.use(checkAuthMiddleware);
 
 router.post("/", async (req, res) => {
   console.log("posting the message...");
-  const username = req.body["username"];
-  const friend = req.body["friend"];
-  const sender = req.body["sender"];
+  const userID = req.body["userID"];
+  const friendID = req.body["friendID"];
+  const senderID = req.body["senderID"];
   const text = req.body["text"];
-  const response = await addMessage(username, {
-    friend: friend,
+  const response = await addMessage(userID, {
+    friendID: friendID,
     text: text,
-    sender: sender,
+    senderID: senderID,
   });
   if (response) return res.status(200).json({ status: "added" });
   return res.status(422).json({

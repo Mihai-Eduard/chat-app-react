@@ -1,14 +1,10 @@
 const { admin } = require("./admin");
 const { getUser } = require("./users");
 
-const addMessage = async (username, { friend, text, sender }) => {
+const addMessage = async (userID, { friendID, text, senderID }) => {
   try {
-    const { userKey: userKey1, user: user1 } = await getUser({
-      username: username,
-    });
-    const { userKey: userKey2, user: user2 } = await getUser({
-      username: friend,
-    });
+    const { userKey: userKey1, user: user1 } = await getUser({ id: userID });
+    const { userKey: userKey2, user: user2 } = await getUser({ id: friendID });
     if (!userKey1 || !userKey2) return null;
 
     let conversationKey1 = null;
@@ -16,21 +12,25 @@ const addMessage = async (username, { friend, text, sender }) => {
 
     if (user1["conversations"]) {
       conversationKey1 = Object.keys(user1["conversations"]).find(
-        (key) => user1["conversations"][key].friend === friend,
+        (key) => user1["conversations"][key].friendID === friendID,
       );
     }
     if (user2["conversations"]) {
       conversationKey2 = Object.keys(user2["conversations"]).find(
-        (key) => user2["conversations"][key].friend === username,
+        (key) => user2["conversations"][key].friendID === userID,
       );
     }
+
+    console.log(user1, user2);
 
     if (!conversationKey1) {
       const addConversationResponse = await admin
         .database()
         .ref("/users/" + userKey1 + "/conversations")
         .push({
-          friend: friend,
+          friendUsername: user2.username,
+          friendID: user2.id,
+          friendPicture: user2.picture,
         });
       conversationKey1 = addConversationResponse["getKey"]();
     }
@@ -39,7 +39,9 @@ const addMessage = async (username, { friend, text, sender }) => {
         .database()
         .ref("/users/" + userKey2 + "/conversations")
         .push({
-          friend: username,
+          friendUsername: user1.username,
+          friendID: user1.id,
+          friendPicture: user2.picture,
         });
       conversationKey2 = addConversationResponse["getKey"]();
     }
@@ -60,7 +62,7 @@ const addMessage = async (username, { friend, text, sender }) => {
       )
       .push({
         text: text,
-        sender: sender,
+        senderID: senderID,
         date: date,
       });
     const addMessageResponse2 = await admin
@@ -74,7 +76,7 @@ const addMessage = async (username, { friend, text, sender }) => {
       )
       .push({
         text: text,
-        sender: sender,
+        senderID: senderID,
         date: date,
       });
     const messageKey1 = addMessageResponse1["getKey"]();
@@ -87,9 +89,9 @@ const addMessage = async (username, { friend, text, sender }) => {
   }
 };
 
-const getConversations = async (username) => {
+const getConversations = async (id) => {
   try {
-    const { user } = await getUser({ username: username });
+    const { user } = await getUser({ id: id });
     if (!user) return null;
     if (!user["conversations"]) return {};
 

@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./ChatBox.module.css";
-import profileDefault from "../../resources/UserPage/profile-default.png";
+import profileDefault from "../../resources/UserPage/profile-picture-default.png";
 import { useDispatch } from "react-redux";
 import { currentActions } from "../../store/current-slice";
 
-const ChatBox = ({ username, conversation, conversationKey }) => {
+const ChatBox = ({ username, conversation, conversationKey, picture }) => {
   const messages = conversation["messages"];
   const dispatch = useDispatch();
   let text = null;
@@ -29,13 +29,16 @@ const ChatBox = ({ username, conversation, conversationKey }) => {
   return (
     <div className={classes.mainContainer} onClick={showMessagesHandler}>
       <div className={classes.imageContainer}>
-        <img src={profileDefault} alt="profile" />
+        <img
+          src={picture === "null" ? profileDefault : picture}
+          alt="profile"
+        />
       </div>
       <div className={classes.detailsContainer}>
         <h5>{username || "Username"}</h5>
         <div className={classes.messageContainer}>
           <div className={classes.textContainer}>
-            {text || "Start the conversation"}
+            {conversation["messages"] ? text : "Start the conversation"}
           </div>
           <div className={classes.dateContainer}>{date ? date : ""}</div>
         </div>

@@ -1,0 +1,24 @@
+.defaultMessageSection{
+    background-color: aliceblue;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+.defaultMessageSection h3{
+    align-self: center;
+}
+
+.mainContainer{
+    background-color: aliceblue;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.textContainer{
+    flex-grow: 1;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}

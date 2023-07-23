@@ -1,38 +1,31 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {getToken} from "../../utils/token";
+import React from "react";
+import { useSelector } from "react-redux";
+import { getToken } from "../../utils/token";
+import classes from "./MessageSection.module.css";
+import SendMessageForm from "./SendMessageForm";
+import MessageBubble from "./MessageBubble";
+import { json } from "react-router-dom";
 
 const defaultMessage = (
-  <div
-    style={{
-      background: "aliceblue",
-      flexGrow: "1",
-      display: "flex",
-      justifyContent: "space-around",
-    }}
-  >
-    <h3 style={{ alignSelf: "center" }}>Start Chatting with your friends!</h3>
+  <div className={classes.defaultMessageSection}>
+    <h3>Start Chatting with your friends!</h3>
   </div>
 );
 
 const MessageSection = () => {
-  const username = useSelector((state) => state.current.username);
+  const user = useSelector((state) => state.current.user);
   const conversations = useSelector((state) => state.current.conversations);
   const shownConversation = useSelector(
     (state) => state.current.shownConversation,
   );
-  const [currentText, setCurrentText] = useState("");
 
   if (!shownConversation) return <>{defaultMessage}</>;
+
   const conversation = conversations[shownConversation];
-
   const messages = conversation["messages"] ? conversation["messages"] : {};
+  const messagesKeyList = Object.keys(messages);
 
-  const sendMessageHandler = (event) => {
-    event.preventDefault();
-    const text = currentText;
-    setCurrentText("");
-
+  const sendMessageHandler = (text) => {
     fetch("http://localhost:8080/messages", {
       method: "POST",
       headers: {
@@ -40,10 +33,10 @@ const MessageSection = () => {
         Authorization: `Bearer ${getToken()}`,
       },
       body: JSON.stringify({
-        username: username,
+        userID: user["id"],
         text: text,
-        sender: username,
-        friend: conversation["friend"],
+        senderID: user["id"],
+        friendID: conversation["friendID"],
       }),
     })
       .then((response) => {
@@ -51,54 +44,32 @@ const MessageSection = () => {
       })
       .catch((error) => {
         console.log(error);
+        throw json({ message: "Could not send the message!" }, { status: 500 });
       });
   };
 
-  const fromMiliToTime = (timeInMillies) => {
-      const dateObject = new Date(timeInMillies);
-
-      const hours = dateObject.getHours();
-      const minutes = dateObject.getMinutes();
-
-      const formattedHours = hours.toString().padStart(2, '0');
-      const formattedMinutes = minutes.toString().padStart(2, '0');
-
-      return `${formattedHours}:${formattedMinutes}`;
-  }
   return (
-    <div
-      style={{
-        background: "aliceblue",
-        flexGrow: "1",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div style={{ flexGrow: 1, overflowY: "scroll" }}>
-        {Object.keys(messages).map((key) => {
+    <div className={classes.mainContainer}>
+      <div className={classes.textContainer}>
+        {messagesKeyList.map((key, index) => {
           return (
-            <div key={key}>
-              {messages[key].sender}({fromMiliToTime(messages[key].date)}) :{" "}
-              {messages[key].text}
-            </div>
+            <MessageBubble
+              key={key}
+              friendUsername={conversation["friendUsername"]}
+              friendPicture={conversation["friendPicture"]}
+              text={messages[key].text}
+              date={messages[key].date}
+              isUserTheSender={user.id === messages[key].senderID}
+              isTheFirstMessage={
+                index === 0 ||
+                messages[key].senderID !==
+                  messages[messagesKeyList[index - 1]].senderID
+              }
+            />
           );
         })}
       </div>
-      <div>
-        <form
-          style={{ width: "100%", display: "flex", padding: "3rem" }}
-          onSubmit={sendMessageHandler}
-        >
-          <textarea
-            style={{ flexGrow: 1, resize: "none" }}
-            value={currentText}
-            onChange={(event) => {
-              setCurrentText(event.target.value);
-            }}
-          />
-          <button>Send</button>
-        </form>
-      </div>
+      <SendMessageForm sendMessageHandler={sendMessageHandler} />
     </div>
   );
 };

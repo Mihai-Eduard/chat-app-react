@@ -3,13 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const currentSlice = createSlice({
   name: "current",
   initialState: {
-    username: null,
+    user: {
+      username: null,
+      picture: null,
+      id: null,
+    },
     conversations: null,
     shownConversation: null,
   },
   reducers: {
-    setUsername(state, action) {
-      state.username = action.payload.username;
+    setUser(state, action) {
+      state.user = action.payload.user;
     },
     setConversations(state, action) {
       state.conversations = action.payload.conversations;
