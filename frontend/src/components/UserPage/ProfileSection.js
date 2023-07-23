@@ -1,10 +1,10 @@
 import React from "react";
-import profileDefault from "../../resources/UserPage/my-profile-picture.png";
+import profileDefault from "../../resources/UserPage/profile-picture-default.png";
 import classes from "./ProfileSection.module.css";
 import { useSelector } from "react-redux";
 
 const ProfileSection = () => {
-  const username = useSelector((state) => state.current.username);
+  const user = useSelector((state) => state.current.user);
 
   const settingsIcon = (
     <svg
@@ -25,10 +25,13 @@ const ProfileSection = () => {
   return (
     <div className={classes.mainContainer} style={{}}>
       <div className={classes.imageContainer}>
-        <img src={profileDefault} alt="profile" />
+        <img
+          src={user.picture === "null" ? profileDefault : user.picture}
+          alt="profile"
+        />
       </div>
       <div className={classes.detailsContainer}>
-        <h5>{username || "Username"}</h5>
+        <h5>{user.username || "Username"}</h5>
       </div>
       <div className={classes.settingsContainer}>{settingsIcon}</div>
     </div>

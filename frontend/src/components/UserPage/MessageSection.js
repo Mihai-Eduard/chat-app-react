@@ -13,7 +13,7 @@ const defaultMessage = (
 );
 
 const MessageSection = () => {
-  const username = useSelector((state) => state.current.username);
+  const user = useSelector((state) => state.current.user);
   const conversations = useSelector((state) => state.current.conversations);
   const shownConversation = useSelector(
     (state) => state.current.shownConversation,
@@ -33,10 +33,10 @@ const MessageSection = () => {
         Authorization: `Bearer ${getToken()}`,
       },
       body: JSON.stringify({
-        username: username,
+        userID: user["id"],
         text: text,
-        sender: username,
-        friend: conversation["friend"],
+        senderID: user["id"],
+        friendID: conversation["friendID"],
       }),
     })
       .then((response) => {
@@ -55,14 +55,15 @@ const MessageSection = () => {
           return (
             <MessageBubble
               key={key}
-              sender={messages[key].sender}
+              friendUsername={conversation["friendUsername"]}
+              friendPicture={conversation["friendPicture"]}
               text={messages[key].text}
               date={messages[key].date}
-              isUserTheSender={username === messages[key].sender}
+              isUserTheSender={user.id === messages[key].senderID}
               isTheFirstMessage={
                 index === 0 ||
-                messages[key].sender !==
-                  messages[messagesKeyList[index - 1]].sender
+                messages[key].senderID !==
+                  messages[messagesKeyList[index - 1]].senderID
               }
             />
           );

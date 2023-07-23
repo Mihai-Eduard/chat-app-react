@@ -3,8 +3,8 @@ const { sign, verify } = require("jsonwebtoken");
 
 const KEY = require("../credentials/jwt-key-code.json").key;
 
-function createJSONToken(username) {
-  return sign({ username: username }, KEY, { expiresIn: "1h" });
+function createJSONToken(id) {
+  return sign({ id: id }, KEY, { expiresIn: "1h" });
 }
 
 function isValidPassword(password, storedPassword) {
@@ -32,7 +32,9 @@ function checkAuthMiddleware(req, res, next) {
   const authToken = authData[1];
   try {
     const data = validateJSONToken(authToken);
-    req["username"] = data["username"];
+    console.log("*");
+    console.log(data);
+    req["id"] = data["id"];
     next();
   } catch (error) {
     console.log(error.message);

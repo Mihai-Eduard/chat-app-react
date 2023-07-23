@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./MessageBubble.module.css";
-import profileDefault from "../../resources/UserPage/my-profile-picture.png";
+import profileDefault from "../../resources/UserPage/profile-picture-default.png";
 
 const fromMilliToTime = (timeInMilli) => {
   const dateObject = new Date(timeInMilli);
@@ -14,7 +14,8 @@ const fromMilliToTime = (timeInMilli) => {
 };
 
 const MessageBubble = ({
-  sender,
+  friendUsername,
+  friendPicture,
   text,
   date,
   isUserTheSender,
@@ -26,7 +27,10 @@ const MessageBubble = ({
       className={classes.mainContainer}
     >
       {!isUserTheSender && isTheFirstMessage && (
-        <img src={profileDefault} alt="profile" />
+        <img
+          src={friendPicture === "null" ? profileDefault : friendPicture}
+          alt="profile"
+        />
       )}
       <div
         className={classes.messageBubble}
@@ -36,7 +40,7 @@ const MessageBubble = ({
         }}
       >
         {!isUserTheSender && isTheFirstMessage && (
-          <p className={classes.sender}>~{sender}~</p>
+          <p className={classes.sender}>~{friendUsername}~</p>
         )}
         <p>{text}</p>
         <p className={classes.date}>{fromMilliToTime(date)}</p>

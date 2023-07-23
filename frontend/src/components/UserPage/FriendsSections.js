@@ -9,9 +9,10 @@ const FriendsSections = () => {
       {Object.keys(conversations).map((key) => (
         <ChatBox
           key={key}
-          username={conversations[key].friend}
+          username={conversations[key].friendUsername}
           conversation={conversations[key]}
           conversationKey={key}
+          picture={conversations[key].friendPicture}
         />
       ))}
     </div>
