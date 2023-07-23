@@ -27,7 +27,7 @@ const UserMainPage = () => {
       }
     });
     const interval = setInterval(() => {
-      console.log("fetching");
+      // console.log("fetching");
       fetchTheConversations()
         .then((conversations) => {
           if (conversations === "FALSE") return navigate("/home");

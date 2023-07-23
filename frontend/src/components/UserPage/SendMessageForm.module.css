@@ -1,0 +1,10 @@
+.mainContainer{
+    width: 100%;
+    display: flex;
+    padding: 3rem;
+}
+
+.mainContainer textarea{
+    flex-grow: 1;
+    resize: none;
+}

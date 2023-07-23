@@ -1,0 +1,49 @@
+.mainContainer{
+    width: 100%;
+    display: flex;
+}
+
+.mainContainer img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-left: 0.7rem;
+}
+
+.messageBubble {
+    border-radius: 1rem;
+    padding: 0.4rem 0.7rem;
+    max-width: 60%;
+    margin: 0.3rem 0.5rem;
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageBubble .sender{
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.messageBubble .date{
+    align-self: flex-end;
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+/*.messageBubble::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: -10px;*/
+/*    width: 0;*/
+/*    height: 0;*/
+/*    border: 10px solid transparent;*/
+/*    border-right-color: #DCF8C6;*/
+/*    transform: translateY(-50%);*/
+/*}*/
+
+.messageBubble p{
+    margin-bottom: 0;
+}
