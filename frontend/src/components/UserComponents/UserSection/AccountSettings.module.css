@@ -1,0 +1,37 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContainer img{
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+}
+
+.selectPictureContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.selectUsernameContainer{
+    margin-top: 3rem;
+}
+
+.selectUsernameContainer input{
+    margin-left: 1rem;
+}
+
+.errorContainer p{
+    color: red;
+}
+
+.buttonsContainer{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.buttonsContainer button{
+    margin-right: 1rem;
+}

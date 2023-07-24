@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import profileDefault from "../../resources/UserPage/profile-picture-default.png";
+import React, { useCallback, useState } from "react";
+import profileDefault from "../../../resources/UserPage/profile-picture-default.png";
 import classes from "./ProfileSection.module.css";
 import { useSelector } from "react-redux";
+import OptionsOverlay from "./OptionsOverlay";
 
 const ProfileSection = () => {
   const user = useSelector((state) => state.current.user);
   const [overlay, setOverlay] = useState(false);
+
+  const closeOverlay = useCallback(() => {
+    setOverlay(false);
+  }, []);
 
   const settingsIcon = (
     <svg
@@ -15,6 +20,9 @@ const ProfileSection = () => {
       fill="currentColor"
       className="bi bi-list"
       viewBox="0 0 16 16"
+      onClick={() => {
+        setOverlay(true);
+      }}
     >
       <path
         fillRule="evenodd"
@@ -25,6 +33,7 @@ const ProfileSection = () => {
 
   return (
     <div className={classes.mainContainer} style={{}}>
+      {overlay && <OptionsOverlay closeOverlay={closeOverlay} />}
       <div className={classes.imageContainer}>
         <img
           src={user.picture === "null" ? profileDefault : user.picture}

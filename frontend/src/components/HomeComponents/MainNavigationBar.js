@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../resources/logo192.png";
+import logo from "../../resources/logo192.png";
 import { Link } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 

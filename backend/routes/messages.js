@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
     senderID: senderID,
   });
   if (response) return res.status(200).json({ status: "added" });
-  return res.status(422).json({
+  return res.status(500).json({
     error: {
       title: "Invalid action!",
       message: "Could not add the message!",

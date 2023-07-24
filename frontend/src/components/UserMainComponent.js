@@ -1,11 +1,11 @@
 import React from "react";
-import ConnectionsSections from "./UserPage/ConnectionsSections";
-import MessageSection from "./UserPage/MessageSection";
+import UserSection from "./UserComponents/UserSection/UserSection";
+import MessageSection from "./UserComponents/MessageSection/MessageSection";
 
 const UserMainComponent = () => {
   return (
     <main style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
-      <ConnectionsSections />
+      <UserSection />
       <MessageSection />
     </main>
   );

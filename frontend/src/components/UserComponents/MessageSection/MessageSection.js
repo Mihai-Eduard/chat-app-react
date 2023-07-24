@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getToken } from "../../utils/token";
+import { getToken } from "../../../utils/token";
 import classes from "./MessageSection.module.css";
 import SendMessageForm from "./SendMessageForm";
 import MessageBubble from "./MessageBubble";

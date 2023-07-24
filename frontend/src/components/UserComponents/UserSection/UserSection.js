@@ -2,7 +2,7 @@ import React from "react";
 import ProfileSection from "./ProfileSection";
 import FriendsSections from "./FriendsSections";
 
-const ConnectionsSections = () => {
+const UserSection = () => {
   return (
     <div style={{ flex: "0 0 30%", overflowY: "scroll", minWidth: "15rem" }}>
       <ProfileSection />
@@ -11,4 +11,4 @@ const ConnectionsSections = () => {
   );
 };
 
-export default ConnectionsSections;
+export default UserSection;

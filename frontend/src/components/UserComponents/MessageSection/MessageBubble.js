@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./MessageBubble.module.css";
-import profileDefault from "../../resources/UserPage/profile-picture-default.png";
+import profileDefault from "../../../resources/UserPage/profile-picture-default.png";
 
 const fromMilliToTime = (timeInMilli) => {
   const dateObject = new Date(timeInMilli);

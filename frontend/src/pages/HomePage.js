@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import MainNavigationBar from "../components/MainNavigationBar";
-import Features from "../components/MainPage/Features";
-import Description from "../components/MainPage/Description";
-import About from "../components/MainPage/About";
+import MainNavigationBar from "../components/HomeComponents/MainNavigationBar";
+import Features from "../components/HomeComponents/Features";
+import Description from "../components/HomeComponents/Description";
+import About from "../components/HomeComponents/About";
 
 const HomePage = () => {
   return (
@@ -21,14 +21,17 @@ const HomePage = () => {
             background: "#09000f",
             display: "flex",
             justifyContent: "space-around",
-              width:"100%",
+            width: "100%",
           }}
         >
           <Description />
         </div>
-          <div style={{width:"100%"}}>
-              <Features/>
-          </div>
+        <div style={{ width: "100%" }}>
+          <Features />
+        </div>
+        <div>
+          <About />
+        </div>
       </main>
     </Fragment>
   );
