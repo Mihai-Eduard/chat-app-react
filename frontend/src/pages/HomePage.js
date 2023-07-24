@@ -18,7 +18,7 @@ const HomePage = () => {
         <div
           style={{
             alignSelf: "center",
-            background: "#09000f",
+            background: "#212539",
             display: "flex",
             justifyContent: "space-around",
             width: "100%",

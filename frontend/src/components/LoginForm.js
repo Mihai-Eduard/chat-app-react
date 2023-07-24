@@ -29,7 +29,7 @@ const LoginForm = () => {
         <div className="col-sm-10">
           <input
             type="email"
-            className="form-control"
+            className="form-control bg-dark bg-opacity-50 text-white"
             id="email"
             placeholder="example@gmail.com"
             ref={emailRef}
@@ -43,7 +43,7 @@ const LoginForm = () => {
         <div className="col-sm-10">
           <input
             type="password"
-            className="form-control"
+            className="form-control bg-dark bg-opacity-50 text-white"
             id="password"
             ref={passwordRef}
           />
