@@ -28,6 +28,11 @@ const dispatchUserAndMessages = (dispatch, response, navigate) => {
       conversations: response["conversations"],
     }),
   );
+  dispatch(
+    currentActions.setFriendRequests({
+      friendRequests: response["friendRequests"],
+    }),
+  );
 };
 
 const handleError = (error) => {

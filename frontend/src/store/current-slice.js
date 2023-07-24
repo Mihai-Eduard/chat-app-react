@@ -10,6 +10,7 @@ const currentSlice = createSlice({
     },
     conversations: null,
     shownConversation: null,
+    friendRequests: null,
   },
   reducers: {
     setUser(state, action) {
@@ -20,6 +21,9 @@ const currentSlice = createSlice({
     },
     setShownConversation(state, action) {
       state.shownConversation = action.payload.shownConversation;
+    },
+    setFriendRequests(state, action) {
+      state.friendRequests = action.payload.friendRequests;
     },
   },
 });

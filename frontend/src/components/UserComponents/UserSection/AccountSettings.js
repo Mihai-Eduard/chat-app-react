@@ -36,19 +36,21 @@ const AccountSettings = ({ closeOverlay }) => {
   };
 
   const saveChangesHandler = () => {
-    if (error) return;
+    if (error === "The picture should not exceed 1MB.") return;
     if (username.trim().length === 0) {
       setError("The username cannot be an empty string.");
       return;
     }
-
-    console.log();
+    if (username.trim().length > 10) {
+      setError("The username cannot exceed 10 characters.");
+      return;
+    }
 
     setError(null);
     setIsSubmitting(true);
 
     const changes = {
-      username: username,
+      username: username.trim(),
       picture: picture === user.picture ? "same" : picture,
     };
 
@@ -74,13 +76,16 @@ const AccountSettings = ({ closeOverlay }) => {
 
   return (
     <div className={classes.mainContainer}>
+      <div>
+        <label htmlFor="id">{`User ID: ${user.id}`}</label>
+      </div>
       <div className={classes.selectPictureContainer}>
         <img
           src={picture !== "null" ? picture.toString() : defaultPicture}
           alt="profile"
         />
         <div>
-          <label htmlFor="picture">Change profile picture</label>
+          <label htmlFor="picture">Change profile picture:</label>
           <input
             id="picture"
             name="picture"
@@ -100,7 +105,7 @@ const AccountSettings = ({ closeOverlay }) => {
         </div>
       </div>
       <div className={classes.selectUsernameContainer}>
-        <label htmlFor="username">Change username</label>
+        <label htmlFor="username">Change username:</label>
         <input
           id="username"
           name="username"

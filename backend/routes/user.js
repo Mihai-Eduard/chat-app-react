@@ -84,4 +84,45 @@ router.post("/change", async (req, res) => {
   }
 });
 
+router.post("/request", async (req, res) => {
+  try {
+    const userID = req["id"];
+    const friendID = req.body["friendID"];
+    if (userID === friendID)
+      return res.status(422).json({ error: "invalid id" });
+
+    const { userKey: friendKey, user: friend } = await getUser({
+      id: friendID,
+    });
+    if (!friendID || !friend)
+      return res.status(422).json({ error: "invalid id" });
+
+    if (!friend["friendRequests"]) {
+      await admin
+        .database()
+        .ref(`/users/${friendKey}/friendRequests`)
+        .push({ friendID: userID });
+      return res.status(200).json({ status: "accepted" });
+    }
+    const index = Object.keys(friend["friendRequests"]).findIndex(
+      (key) => friend["friendRequests"][key].friendID === userID,
+    );
+    if (index === -1) {
+      await admin
+        .database()
+        .ref(`/users/${friendKey}/friendRequests`)
+        .push({ friendID: userID });
+    }
+    return res.status(200).json({ status: "accepted" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      error: {
+        title: "Invalid action!",
+        message: "Could not change the picture!",
+      },
+    });
+  }
+});
+
 module.exports = router;
