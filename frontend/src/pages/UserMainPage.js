@@ -73,13 +73,6 @@ const UserMainPage = () => {
 export default UserMainPage;
 
 const fetchTheUser = async () => {
-  const sleep = (milliseconds) => {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-  };
-
-  console.log("fetching...");
-  await sleep(1500);
-
   try {
     const response = await fetch("http://localhost:8080/user", {
       method: "GET",

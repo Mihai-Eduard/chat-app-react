@@ -5,7 +5,6 @@ import Modal from "../ui/Modal";
 const LoginForm = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const rememberMeRef = useRef(null);
   const fetcher = useFetcher();
 
   const actionData = fetcher.data;
@@ -51,17 +50,6 @@ const LoginForm = () => {
       </div>
       <div className="row mb-3">
         <div className="col-sm-10 offset-sm-2" style={{ marginLeft: "0px" }}>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="checkbox"
-              ref={rememberMeRef}
-            />
-            <label className="form-check-label" htmlFor="checkbox">
-              Remember me
-            </label>
-          </div>
           {actionData && actionData.error && !isSubmitting && (
             <p style={{ color: "red", marginTop: "1rem" }}>
               {actionData.error.message}

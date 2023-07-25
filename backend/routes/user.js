@@ -3,6 +3,7 @@ const { checkAuthMiddleware } = require("../utils/auth");
 const { getUser } = require("../api/users");
 const { admin, bucket } = require("../api/admin");
 const { v4: uuidv4 } = require("uuid");
+const { addMessage } = require("../api/messages");
 
 const router = express.Router();
 
@@ -89,13 +90,21 @@ router.post("/request", async (req, res) => {
     const userID = req["id"];
     const friendID = req.body["friendID"];
     if (userID === friendID)
-      return res.status(422).json({ error: "invalid id" });
+      return res.status(422).json({ error: "This is you own ID!" });
 
     const { userKey: friendKey, user: friend } = await getUser({
       id: friendID,
     });
     if (!friendID || !friend)
-      return res.status(422).json({ error: "invalid id" });
+      return res.status(422).json({ error: "This ID doesn't exist!" });
+
+    if (friend["conversations"]) {
+      const index = Object.keys(friend["conversations"]).findIndex(
+        (key) => friend["conversations"][key].friendID === userID,
+      );
+      if (index !== -1)
+        return res.status(422).json({ error: "This is already your friend!" });
+    }
 
     if (!friend["friendRequests"]) {
       await admin
@@ -114,6 +123,41 @@ router.post("/request", async (req, res) => {
         .push({ friendID: userID });
     }
     return res.status(200).json({ status: "accepted" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      error: {
+        title: "Invalid action!",
+        message: "Could not change the picture!",
+      },
+    });
+  }
+});
+
+router.post("/response", async (req, res) => {
+  try {
+    const userID = req["id"];
+    const friendID = req.body["friendID"];
+    const accept = req.body["accept"];
+
+    const { userKey, user } = await getUser({ id: userID });
+
+    if (user["friendRequests"]) {
+      const index = Object.keys(user["friendRequests"]).findIndex(
+        (key) => user["friendRequests"][key].friendID === friendID,
+      );
+      if (index !== -1) {
+        const friendRequestKey = Object.keys(user["friendRequests"])[index];
+        await admin
+          .database()
+          .ref(`users/${userKey}/friendRequests/${friendRequestKey}`)
+          .set(null);
+      }
+    }
+
+    if (accept) {
+      await addMessage(userID, { friendID, text: null, senderID: null });
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).json({

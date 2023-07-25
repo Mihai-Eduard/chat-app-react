@@ -21,8 +21,6 @@ const addMessage = async (userID, { friendID, text, senderID }) => {
       );
     }
 
-    console.log(user1, user2);
-
     if (!conversationKey1) {
       const addConversationResponse = await admin
         .database()
@@ -41,7 +39,7 @@ const addMessage = async (userID, { friendID, text, senderID }) => {
         .push({
           friendUsername: user1.username,
           friendID: user1.id,
-          friendPicture: user2.picture,
+          friendPicture: user1.picture,
         });
       conversationKey2 = addConversationResponse["getKey"]();
     }

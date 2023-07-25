@@ -77,7 +77,7 @@ const AccountSettings = ({ closeOverlay }) => {
   return (
     <div className={classes.mainContainer}>
       <div>
-        <label htmlFor="id">{`User ID: ${user.id}`}</label>
+        <p>{`User ID: ${user.id}`}</p>
       </div>
       <div className={classes.selectPictureContainer}>
         <img

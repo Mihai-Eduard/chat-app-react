@@ -7,8 +7,10 @@ const ErrorPage = () => {
 
   return (
     <div>
-      <p>{`status: ${error.status}`}</p>
-      <p>{`message: ${error.data.message}`}</p>
+      <p>{`status: ${error.status ? error.status : 500}`}</p>
+      <p>{`message: ${
+        error.data ? error.data.message : "Server error occurred!"
+      }`}</p>
     </div>
   );
 };

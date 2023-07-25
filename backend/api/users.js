@@ -21,20 +21,23 @@ const getUser = async ({ email, username, id }) => {
   }
 };
 
-const addUser = async (email, password) => {
+const addUser = async (email, password, username) => {
   try {
     const hashedPassword = await hash(password, 10);
+    const id = uuidv4(undefined, undefined, undefined);
     const user = {
-      id: uuidv4(undefined, undefined, undefined),
+      id: id,
       email: email,
       password: hashedPassword,
+      username: username,
+      picture: "null",
     };
     const response = await admin.database().ref("/users").push(user);
     if (!response) {
       console.log("Could not add the users!");
       return null;
     }
-    return true;
+    return { id: id };
   } catch (error) {
     console.log(error.message);
     return null;

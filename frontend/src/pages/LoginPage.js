@@ -14,10 +14,6 @@ const LoginPage = () => {
 export default LoginPage;
 
 export async function loginFormAction({ request }) {
-  const sleep = (milliseconds) => {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-  };
-
   try {
     const user = await request.formData();
     const response = await fetch("http://localhost:8080/login", {
@@ -31,7 +27,6 @@ export async function loginFormAction({ request }) {
       }),
     });
 
-    await sleep(1000);
     const data = await response.json();
 
     if (response.status === 422) return data;

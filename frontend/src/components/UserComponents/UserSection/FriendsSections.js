@@ -6,15 +6,16 @@ const FriendsSections = () => {
 
   return (
     <div style={{ borderBottom: "0.05rem solid rgb(174 174 174 / 50%)" }}>
-      {Object.keys(conversations).map((key) => (
-        <ChatBox
-          key={key}
-          friendUsername={conversations[key].friendUsername}
-          conversation={conversations[key]}
-          conversationKey={key}
-          picture={conversations[key].friendPicture}
-        />
-      ))}
+      {conversations &&
+        Object.keys(conversations).map((key) => (
+          <ChatBox
+            key={key}
+            friendUsername={conversations[key].friendUsername}
+            conversation={conversations[key]}
+            conversationKey={key}
+            picture={conversations[key].friendPicture}
+          />
+        ))}
     </div>
   );
 };
