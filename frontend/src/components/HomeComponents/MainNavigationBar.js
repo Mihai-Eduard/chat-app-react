@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../resources/logo192.png";
+import logo from "../../resources/logo.png";
 import { Link } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 
@@ -21,7 +21,7 @@ const MainNavigationBar = () => {
               height="30"
               className="d-inline-block align-top"
             />
-            {"SorinCord"}
+            {"ChatApp"}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -33,8 +33,8 @@ const MainNavigationBar = () => {
               <Nav.Link href="#description" style={{ marginLeft: "1rem" }}>
                 Description
               </Nav.Link>
-              <Nav.Link href="#features" style={{ marginLeft: "1rem" }}>
-                Features
+              <Nav.Link href="#technologies" style={{ marginLeft: "1rem" }}>
+                Technologies
               </Nav.Link>
               <Nav.Link href="#about" style={{ marginLeft: "1rem" }}>
                 About Us

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import classes from "./AccountSettings.module.css";
 import defaultPicture from "../../../resources/UserPage/profile-picture-default.png";
-import { getToken } from "../../../utils/token";
+import { getToken, removeToken } from "../../../utils/token";
 import { json, useNavigate } from "react-router-dom";
 
 const AccountSettings = ({ closeOverlay }) => {
@@ -117,22 +117,34 @@ const AccountSettings = ({ closeOverlay }) => {
       <div className={classes.errorContainer}>{error && <p>{error}</p>}</div>
       <div className={classes.buttonsContainer}>
         <button
-          type="submit"
-          className="btn btn-outline-primary"
-          disabled={isSubmitting}
-          onClick={saveChangesHandler}
-        >
-          {!isSubmitting ? "Save" : "Saving..."}
-        </button>
-        <button
-          type="submit"
           className="btn btn-outline-light"
-          style={{ marginRight: "1rem" }}
-          onClick={closeOverlay}
           disabled={isSubmitting}
+          onClick={() => {
+            removeToken();
+            navigate("/home");
+          }}
         >
-          Cancel
+          Log out
         </button>
+        <div>
+          <button
+            type="submit"
+            className="btn btn-outline-primary"
+            disabled={isSubmitting}
+            onClick={saveChangesHandler}
+          >
+            {!isSubmitting ? "Save" : "Saving..."}
+          </button>
+          <button
+            type="submit"
+            className="btn btn-outline-light"
+            style={{ marginRight: "1rem" }}
+            onClick={closeOverlay}
+            disabled={isSubmitting}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

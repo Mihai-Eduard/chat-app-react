@@ -1,18 +1,9 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import * as PropTypes from "prop-types";
-import photo1 from "../../resources/MainPage/photo1.jpg";
-import photo2 from "../../resources/MainPage/photo2.jpg";
-import photo3 from "../../resources/MainPage/photo3.jpg";
+import photo1 from "../../resources/MainPage/picture1.png";
+import photo2 from "../../resources/MainPage/picture2.png";
+import photo3 from "../../resources/MainPage/picture3.png";
 
-function ExampleCarouselImage({ src, alt }) {
-  return <img src={src} alt={alt} className="carousel-image" />;
-}
-
-ExampleCarouselImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-};
 const Description = () => {
   const imageStyle = {
     height: "auto",
@@ -23,38 +14,33 @@ const Description = () => {
     return <img src={src} alt={alt} style={imageStyle} />;
   }
 
-  ExampleCarouselImage.propTypes = {
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-  };
-
   return (
     <Carousel
-      id="description"
       fade
-      style={{ width: "50%", marginTop: "3rem", marginBottom: "3rem" }}
+      style={{
+        width: "50%",
+        marginTop: "3rem",
+        marginBottom: "3rem",
+        alignSelf: "center",
+      }}
+      variant="dark"
     >
       <Carousel.Item>
         <CarouselImage src={photo1} alt="First slide" />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3 style={{ color: "black" }}>Real-time instant messages</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <CarouselImage src={photo2} alt="Second slide" />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3 style={{ color: "black" }}>Configurable account</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <CarouselImage src={photo3} alt="Third slide" />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <h3 style={{ color: "black" }}>Manage your connections</h3>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

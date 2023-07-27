@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import MainNavigationBar from "../components/HomeComponents/MainNavigationBar";
-import Features from "../components/HomeComponents/Features";
+import Technologies from "../components/HomeComponents/Technologies";
 import Description from "../components/HomeComponents/Description";
 import About from "../components/HomeComponents/About";
 
@@ -21,15 +21,22 @@ const HomePage = () => {
             background: "#212539",
             display: "flex",
             justifyContent: "space-around",
+            flexDirection: "column",
             width: "100%",
           }}
+          id="technologies"
         >
+          <h5
+            style={{ color: "white", marginTop: "3rem", alignSelf: "center" }}
+          >
+            Join us to get started!
+          </h5>
           <Description />
         </div>
-        <div style={{ width: "100%" }}>
-          <Features />
+        <div style={{ width: "100%" }} id="features">
+          <Technologies />
         </div>
-        <div>
+        <div id="about">
           <About />
         </div>
       </main>
