@@ -28,19 +28,19 @@ const Description = () => {
       <Carousel.Item>
         <CarouselImage src={photo1} alt="First slide" />
         <Carousel.Caption>
-          <h3 style={{ color: "black" }}>Real-time instant messages</h3>
+          <h3 style={{ color: "#212539" }}>Real-time instant messages</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <CarouselImage src={photo2} alt="Second slide" />
         <Carousel.Caption>
-          <h3 style={{ color: "black" }}>Configurable account</h3>
+          <h3 style={{ color: "#F5F5DC" }}>Configurable account</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <CarouselImage src={photo3} alt="Third slide" />
         <Carousel.Caption>
-          <h3 style={{ color: "black" }}>Manage your connections</h3>
+          <h3 style={{ color: "#F5F5DC" }}>Manage your connections</h3>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

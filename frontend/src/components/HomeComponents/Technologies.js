@@ -12,28 +12,28 @@ const Technologies = () => {
         background: "#212539",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center", // Center the "Yes" text vertically
-        alignItems: "center", // Center the "Yes" text horizontally
+        justifyContent: "center",
+        alignItems: "center",
         color: "#F5F5DC",
       }}
     >
       <CardGroup style={{ height: "25rem", width: "100%" }}>
-        <Card bg="dark" style={{ width: "auto", color: "#F5F5DC" }}>
+        <Card bg="secondary" style={{ width: "auto", color: "#F5F5DC", textAlign: "center" }}>
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>Frontend</Card.Title>
-            <img alt="react" src={photo1} style={{ width: "10rem" }} />
+            <img alt="react" src={photo1} style={{ width: "10rem", margin:"2rem" }} />
           </Card.Body>
         </Card>
-        <Card bg="dark" style={{ width: "auto", color: "#F5F5DC" }}>
+        <Card bg="secondary" style={{ width: "auto", color: "#F5F5DC", textAlign: "center" }}>
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>Backend</Card.Title>
-            <img alt="nodejs" src={photo2} style={{ width: "10rem" }} />
+            <img alt="nodejs" src={photo2} style={{ width: "10rem", margin:"2rem" }} />
           </Card.Body>
         </Card>
-        <Card bg="dark" style={{ width: "auto", color: "#F5F5DC" }}>
+        <Card bg="secondary" style={{ width: "auto", color: "#F5F5DC", textAlign: "center"}}>
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>Backend</Card.Title>
-            <img alt="fireabse" src={photo3} style={{ width: "10rem" }} />
+            <img alt="fireabse" src={photo3} style={{ width: "10rem", margin:"2rem" }} />
           </Card.Body>
         </Card>
       </CardGroup>
