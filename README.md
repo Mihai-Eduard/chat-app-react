@@ -16,7 +16,7 @@
     - [Material UI](https://mui.com/material-ui/getting-started/) for creating the UI.
  - [Node.js](https://nodejs.org/en) with JavaScript for the backend, including:
     - [Express.js](https://expressjs.com/) as our main server-side framework,
-    - [JWT](https://www.npmjs.com/package/jsonwebtoken) for the authenticating the user,
+    - [JWT](https://www.npmjs.com/package/jsonwebtoken) for authenticating the user,
     - [Bcrypt](https://www.npmjs.com/package/bcrypt) for hashing the users' sensitive data.
  - [Firebase](https://firebase.google.com/) for the database, including:
     - [Firebase Realtime Database](https://firebase.google.com/docs/database) for the conversations and the users' details,
